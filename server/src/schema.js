@@ -109,10 +109,18 @@ const people = [
     personId: String!
   }
 
+  type PersonWithCars {
+    id: String!
+    firstName: String!
+    lastName: String!
+    cars: [Car]
+  }
+
   type Query {
     people: [People]
     person(id: String!): People
     cars: [Car]
+    personWithCars(id: String!): PersonWithCars
   }
 
   type Mutation {
@@ -130,6 +138,19 @@ const resolvers = {
         cars: ()=> cars,
         person: (root, args)=>{
             return find(people,{id:args.id})
+        },
+        personWithCars:  (root, args)=>{
+          const p = find(people, {id:args.id})
+          if(p){
+            personsCars = cars.filter((car)=>car.personId===args.id)
+            return{
+              ...person,
+              cars: personWithCars
+            }
+          }
+          else{
+            throw new Error("Couldn't find the person")
+          }
         }
     },
     Mutation:{
@@ -163,7 +184,7 @@ const resolvers = {
             }
 
             const removedCars = cars.filter((car)=>car.personId===args.id)
-            console.log(removedCars);
+            
       
             remove(people, p => {
               return p.id === removedPerson.id
