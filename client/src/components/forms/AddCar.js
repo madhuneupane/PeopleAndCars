@@ -12,7 +12,7 @@ const AddCar = ()=>{
     <>
     <Title level={3} style={{marginBottom:20}}>Add Car</Title>
     <Form
-    name="add-person"
+    name="add-car"
     layout='inline'
     size='large'
     style={{justifyContent:"center",marginBottom:'40px'}}
@@ -42,6 +42,12 @@ const AddCar = ()=>{
         <Input prefix="$" />
       </Form.Item>
 
+      <Form.Item name='Person' rules={[{ required: true, message: 'Please Select Person' }]}
+      label ='Person'
+      >
+        <Input  />
+      </Form.Item>
+
       <Form.Item shouldUpdate={true}>
         {() => (
           <Button
@@ -52,7 +58,7 @@ const AddCar = ()=>{
               form.getFieldsError().filter(({ errors }) => errors.length).length
             }
           >
-            Add Person
+            Add Car
           </Button>
         )}
           </Form.Item>
