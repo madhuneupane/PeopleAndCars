@@ -4,9 +4,9 @@ import People from '../components/list/People';
 const Home = ()=>{
 return(
     <>
-    <AddPerson />
-    <AddCar />
-    <People />
+<AddPerson />
+<AddCar />
+<People />
     </>
 )
 

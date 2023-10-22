@@ -1,17 +1,16 @@
 import { Card } from "antd"
-import { GET_PERSON_WITH_CARS } from "../../graphql/queries";
+import Car from "../list/Car";
+
 
 const PersonCard = (props)=>{
   const styles = getStyles()
   const {id, firstName, lastName} =  props;
-   
+
 return(
     <Card style={styles.card}>
         {firstName} {lastName}
-        <Card >
-        
-        
-    </Card>
+      <Car
+      id={id}/>
     </Card>
 )
 }

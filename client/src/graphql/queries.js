@@ -11,7 +11,8 @@ export const GET_PEOPLE =gql`
 `
 
 export const GET_PERSON_WITH_CARS =gql`
-personWithCars(id: $personWithCarsId) {
+query ($personWithCarsId: String!) {
+  personWithCars(id: $personWithCarsId) {
     id
     firstName
     lastName
@@ -24,4 +25,4 @@ personWithCars(id: $personWithCarsId) {
       personId
     }
   }
-`
+}`
