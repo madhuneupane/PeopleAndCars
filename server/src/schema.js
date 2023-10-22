@@ -142,10 +142,11 @@ const resolvers = {
         personWithCars:  (root, args)=>{
           const p = find(people, {id:args.id})
           if(p){
-            personsCars = cars.filter((car)=>car.personId===args.id)
+            const personsCars = cars.filter((car)=>car.personId===args.id)
+            console.log(p);
             return{
-              ...person,
-              cars: personWithCars
+              ...p,
+              cars: personsCars
             }
           }
           else{

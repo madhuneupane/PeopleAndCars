@@ -1,13 +1,23 @@
-import {Form, Input, Typography, Button} from 'antd'
+import {Form, Input, Typography, Button, Select} from 'antd'
 import { useEffect, useState } from 'react'
+import { GET_PEOPLE } from '../../graphql/queries';
+import {useQuery} from '@apollo/client'
+
 const {Title} = Typography;
 const AddCar = ()=>{
     const [form] = Form.useForm()
     const [, forceUpdate] = useState()
+	const { Option } = Select;
+  useEffect(() => {
+    forceUpdate({})
+  }, [])
 
-    useEffect(() => {
-        forceUpdate({})
-      }, [])
+    const {loading,error,data} = useQuery(GET_PEOPLE)
+    if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
+
+
+   
     return (
     <>
     <Title level={3} style={{marginBottom:20}}>Add Car</Title>
@@ -45,7 +55,14 @@ const AddCar = ()=>{
       <Form.Item name='Person' rules={[{ required: true, message: 'Please Select Person' }]}
       label ='Person'
       >
-        <Input  />
+        <Select style={{ width: 200 }} placeholder='Select a Person'>
+						{
+							data.people.map(({ id, firstName, lastName }) => (
+								<Option key={id} value={id}>
+									{firstName} {lastName}
+								</Option>
+							))}
+					</Select>
       </Form.Item>
 
       <Form.Item shouldUpdate={true}>

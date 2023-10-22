@@ -9,3 +9,19 @@ export const GET_PEOPLE =gql`
     }
 }
 `
+
+export const GET_PERSON_WITH_CARS =gql`
+personWithCars(id: $personWithCarsId) {
+    id
+    firstName
+    lastName
+    cars {
+      id
+      year
+      make
+      model
+      price
+      personId
+    }
+  }
+`

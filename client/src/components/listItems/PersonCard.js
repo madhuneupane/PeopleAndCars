@@ -1,4 +1,5 @@
 import { Card } from "antd"
+import { GET_PERSON_WITH_CARS } from "../../graphql/queries";
 
 const PersonCard = (props)=>{
   const styles = getStyles()
@@ -7,6 +8,10 @@ const PersonCard = (props)=>{
 return(
     <Card style={styles.card}>
         {firstName} {lastName}
+        <Card >
+        
+        
+    </Card>
     </Card>
 )
 }
