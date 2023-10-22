@@ -26,3 +26,13 @@ query ($personWithCarsId: String!) {
     }
   }
 }`
+
+export const ADD_PERSON = gql`
+mutation AddPerson($addPersonId: String!, $firstName: String!, $lastName: String!) {
+  addPerson(id: $addPersonId, firstName: $firstName, lastName: $lastName) {
+    id
+    firstName
+    lastName
+  }
+} 
+`

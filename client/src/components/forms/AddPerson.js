@@ -1,13 +1,46 @@
+import { useMutation } from '@apollo/client';
 import {Form, Input, Typography, Button} from 'antd'
 import { useEffect, useState } from 'react'
+import {v4 as uuidv4} from 'uuid'
+import { ADD_PERSON, GET_PEOPLE } from '../../graphql/queries';
 const {Title} = Typography;
 const AddPerson = ()=>{
-    const [form] = Form.useForm()
-    const [, forceUpdate] = useState()
+  const [id] = useState(uuidv4())
+  const [form] = Form.useForm()
+  const [, forceUpdate] = useState()
+  const [addPerson] = useMutation(ADD_PERSON)
 
-    useEffect(() => {
-        forceUpdate({})
+  useEffect(() => {
+    forceUpdate({})
       }, [])
+
+const onFinish = values=>{
+const {firstName, lastName} = values
+
+
+addPerson({
+  variables:{
+    addPersonId:id,
+    firstName:firstName,
+    lastName:lastName
+  },
+  update:(cache, {data:{addPerson}})=>{
+    const data  = cache.readQuery({query: GET_PEOPLE})
+    cache.writeQuery({
+      query: GET_PEOPLE,
+      data: {
+        ...data,
+        people: [
+          ...data.people,addPerson
+        ]
+
+      }
+
+    })
+  }
+})
+}
+
     return (
     <>
     <Title level={3} style={{marginBottom:20}}>Add Person</Title>
@@ -16,7 +49,9 @@ const AddPerson = ()=>{
     layout='inline'
     size='large'
     style={{justifyContent:"center",marginBottom:'40px'}}
-    form={form}>
+    form={form}
+    onFinish={onFinish}
+    >
         <Form.Item
         name='firstName'
         rules={[{ required: true, message: 'Please Enter First Name' }]}
