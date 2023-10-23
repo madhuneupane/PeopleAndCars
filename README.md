@@ -1,2 +1,2 @@
-# PeopleAndCars
-This project is develop to fulfill Advanced topic for developer assignment.
+# PeopleAndCars 
+This project is developed to fulfill the assignment of an Advanced topic for the developer.
