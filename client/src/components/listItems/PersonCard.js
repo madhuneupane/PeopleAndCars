@@ -1,5 +1,6 @@
 import { Card } from "antd"
 import Car from "../list/Car";
+import DeletePerson from "../buttons/DeletePerson";
 
 
 const PersonCard = (props)=>{
@@ -7,7 +8,11 @@ const PersonCard = (props)=>{
   const {id, firstName, lastName} =  props;
 
 return(
-    <Card style={styles.card}>
+    <Card style={styles.card}
+     actions={[
+      <DeletePerson id={id}/>
+     ]}
+    >
         {firstName} {lastName}
       <Car
       id={id}/>

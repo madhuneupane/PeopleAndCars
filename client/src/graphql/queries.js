@@ -49,3 +49,13 @@ mutation AddCar($addCarId: String!, $year: Int!, $make: String!, $model: String!
   }
 }
 `
+
+export const DELETE_PERSON =gql`
+mutation DeletePerson($deletePersonId: String!) {
+  deletePerson(id: $deletePersonId) {
+    id
+    firstName
+    lastName
+  }
+}
+`
