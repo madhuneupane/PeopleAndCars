@@ -1,13 +1,56 @@
-import {Form, Input, Typography, Button, Select} from 'antd'
+import { useMutation } from '@apollo/client';
+import {Form, Input, Typography, Button, Select, InputNumber} from 'antd'
 import { useEffect, useState } from 'react'
-import { GET_PEOPLE } from '../../graphql/queries';
+import { ADD_CAR,GET_PEOPLE, GET_PERSON_WITH_CARS } from '../../graphql/queries';
 import {useQuery} from '@apollo/client'
+import {v4 as uuidv4} from 'uuid'
 
 const {Title} = Typography;
 const AddCar = ()=>{
+  const [id] = useState(uuidv4())
     const [form] = Form.useForm()
     const [, forceUpdate] = useState()
 	const { Option } = Select;
+  const [addCar] = useMutation(ADD_CAR)
+
+  const onFinish = values=>{
+    const {year, make, model, price, person} = values
+    
+    addCar({
+      variables:{
+        addCarId:id,
+        year:year,
+        make:make,
+        model:model,
+        price:price,
+        personId:person
+      },
+      update:(cache, {data:{addCar}})=>{
+        const data  = cache.readQuery({query: GET_PERSON_WITH_CARS,
+          variables: { personWithCarsId: person }})
+        cache.writeQuery({
+          query: GET_PERSON_WITH_CARS,variables:{
+            personWithCarsId: person
+          },
+          
+          data: {
+            ...data,
+            personWithCars: {
+              ...data.personWithCars,
+              cars: [
+                ...data.personWithCars.cars,
+                addCar
+              ]
+            }
+          }
+    
+        })
+      }
+
+    })
+  
+  }
+
   useEffect(() => {
     forceUpdate({})
   }, [])
@@ -26,33 +69,34 @@ const AddCar = ()=>{
     layout='inline'
     size='large'
     style={{justifyContent:"center",marginBottom:'40px'}}
-    form={form}>
+    form={form}
+    onFinish={onFinish}>
         <Form.Item
-        name='Year'
+        name='year'
         rules={[{ required: true, message: 'Please Enter Year' }]}
         label ='Year'
       >
-        <Input placeholder='Year' />
+        <InputNumber placeholder='Year i.e 2012' />
       </Form.Item>
-      <Form.Item name='Make' rules={[{ required: true, message: 'Please Enter Make' }]}
+      <Form.Item name='make' rules={[{ required: true, message: 'Please Enter Make' }]}
       label ='Make'
       >
         <Input placeholder='Make' />
       </Form.Item>
 
-      <Form.Item name='Model' rules={[{ required: true, message: 'Please Enter Model' }]}
+      <Form.Item name='model' rules={[{ required: true, message: 'Please Enter Model' }]}
       label ='Model'
       >
         <Input placeholder='Model' />
       </Form.Item>
 
-      <Form.Item name='Price' rules={[{ required: true, message: 'Please Enter Price' }]}
+      <Form.Item name='price' rules={[{ required: true, message: 'Please Enter Price' }]}
       label ='Price'
       >
-        <Input prefix="$" />
+        <InputNumber prefix="$" placeholder='i.e 20000'/>
       </Form.Item>
 
-      <Form.Item name='Person' rules={[{ required: true, message: 'Please Select Person' }]}
+      <Form.Item name='person' rules={[{ required: true, message: 'Please Select Person' }]}
       label ='Person'
       >
         <Select style={{ width: 200 }} placeholder='Select a Person'>
