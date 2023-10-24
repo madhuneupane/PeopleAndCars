@@ -60,6 +60,19 @@ mutation DeletePerson($deletePersonId: String!) {
 }
 `
 
+export const DELETE_CAR = gql`
+mutation DeleteCar($deleteCarId: String!) {
+  deleteCar(id: $deleteCarId) {
+    id
+    year
+    make
+    model
+    price
+    personId
+  }
+}
+`
+
 export const UPDATE_PERSON = gql`
 mutation UpdatePerson($updatePersonId: String!, $firstName: String!, $lastName: String!) {
   updatePerson(id: $updatePersonId, firstName: $firstName, lastName: $lastName) {

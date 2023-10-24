@@ -4,7 +4,7 @@ import { DELETE_PERSON, GET_PEOPLE } from '../../graphql/queries'
 import filter from 'lodash.filter'
 
 const DeletePerson = ({id})=>{
-const [deletePerson] =useMutation(DELETE_PERSON,{
+const [deletePerson] = useMutation(DELETE_PERSON,{
     update(cache, {data:{deletePerson}}){
        const {people} = cache.readQuery({query:GET_PEOPLE})
        cache.writeQuery({
