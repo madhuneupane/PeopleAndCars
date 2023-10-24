@@ -1,4 +1,3 @@
-import { Card } from "antd";
 import { GET_PERSON_WITH_CARS } from "../../graphql/queries";
 import {useQuery} from '@apollo/client'
 import CarCard from "../listItems/CarCard";

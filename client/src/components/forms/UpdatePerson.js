@@ -68,9 +68,6 @@ const UpdatePerson = props=>{
             )
         }
 
-        
-
-
       </Form.Item>
       <Button onClick={props.onButtonClick}>Cancel</Button>
 
