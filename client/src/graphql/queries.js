@@ -59,3 +59,13 @@ mutation DeletePerson($deletePersonId: String!) {
   }
 }
 `
+
+export const UPDATE_PERSON = gql`
+mutation UpdatePerson($updatePersonId: String!, $firstName: String!, $lastName: String!) {
+  updatePerson(id: $updatePersonId, firstName: $firstName, lastName: $lastName) {
+    id
+    firstName
+    lastName
+  }
+}
+`
