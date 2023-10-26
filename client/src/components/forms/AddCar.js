@@ -76,7 +76,7 @@ const AddCar = ()=>{
         rules={[{ required: true, message: 'Please Enter Year' }]}
         label ='Year'
       >
-        <InputNumber placeholder='Year i.e 2012' />
+        <InputNumber placeholder='Year i.e 2012' min={1980} />
       </Form.Item>
       <Form.Item name='make' rules={[{ required: true, message: 'Please Enter Make' }]}
       label ='Make'
@@ -93,7 +93,7 @@ const AddCar = ()=>{
       <Form.Item name='price' rules={[{ required: true, message: 'Please Enter Price' }]}
       label ='Price'
       >
-        <InputNumber prefix="$" placeholder='i.e 20000'/>
+        <InputNumber prefix="$" placeholder='i.e 20000' min={0}/>
       </Form.Item>
 
       <Form.Item name='person' rules={[{ required: true, message: 'Please Select Person' }]}
