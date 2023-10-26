@@ -4,7 +4,7 @@ import DeleteCar from "../buttons/DeleteCar";
 import { useState } from "react";
 import UpdateCar from "../forms/UpdateCar";
 
-const CarCard = ({id,make,model,personId,price,year})=>{
+const CarCard = ({id,make,model,personId,price,year,showPage})=>{
      const formattedPrice = price.toLocaleString()
      const [editMode, setEditMode] = useState(false)
 
@@ -22,7 +22,7 @@ const CarCard = ({id,make,model,personId,price,year})=>{
             <UpdateCar id={id} make={make} model={model} personId={personId} price={price} year={year} onButtonClick = {handleButtonClick}/>
             :
         <Card type="inner"
-        actions={[
+        actions={!showPage&&[
             <EditOutlined key="edit" onClick={handleButtonClick}/>,
             <DeleteCar id={id} personId={personId}/>
            ]}> 

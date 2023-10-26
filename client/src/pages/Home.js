@@ -6,7 +6,7 @@ return(
     <>
 <AddPerson />
 <AddCar />
-<People />
+<People showPage={false} />
     </>
 )
 

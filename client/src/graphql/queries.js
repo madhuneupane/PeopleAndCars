@@ -27,6 +27,16 @@ query ($personWithCarsId: String!) {
   }
 }`
 
+export const GET_PERSON_BY_ID = gql`
+query ($personId: String!) {
+  person(id: $personId) {
+    id
+    firstName
+    lastName
+  }
+}
+`
+
 export const ADD_PERSON = gql`
 mutation AddPerson($addPersonId: String!, $firstName: String!, $lastName: String!) {
   addPerson(id: $addPersonId, firstName: $firstName, lastName: $lastName) {
@@ -95,3 +105,5 @@ mutation UpdateCar($updateCarId: String!, $year: Int!, $make: String!, $model: S
   }
 }
 `
+
+

@@ -2,7 +2,7 @@ import { GET_PERSON_WITH_CARS } from "../../graphql/queries";
 import {useQuery} from '@apollo/client'
 import CarCard from "../listItems/CarCard";
 
-const Car = ({id})=>{
+const Car = ({id, showPage})=>{
     const {loading,error,data} = useQuery(GET_PERSON_WITH_CARS, {
 		variables: { personWithCarsId: id },
 	})
@@ -20,6 +20,7 @@ return(
           personId={personId}
           price={price}
           year={year}
+          showPage={showPage}
           />
           
         )

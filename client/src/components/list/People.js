@@ -9,7 +9,7 @@ const getStyles = () => ({
     }
   })
 
-  const People = ()=>{
+  const People = ({showPage})=>{
     const styles = getStyles()
     const {loading,error,data} = useQuery(GET_PEOPLE)
     if (loading) return 'Loading...'
@@ -19,7 +19,7 @@ return(
     <List grid={{ gutter: 20, column: 1 }} style={styles.list}>
     {data.people.map(({ id, firstName, lastName }) => (
       <List.Item key={id}>
-        <PersonCard id={id} firstName={firstName} lastName={lastName} />
+        <PersonCard id={id} firstName={firstName} lastName={lastName} showPage={showPage}/>
       </List.Item>
     ))}
   </List>
