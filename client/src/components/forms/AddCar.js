@@ -91,7 +91,10 @@ const AddCar = ({ people }) => {
             <Form.Item name='price' rules={[{ required: true, message: 'Please Enter Price' }]}
               label='Price'
             >
-              <InputNumber prefix="$" placeholder='i.e 20000' min={0} />
+              <InputNumber prefix="$" placeholder='i.e 20000' min={0}  formatter={(value) => {
+      
+      return value ? `${value}`.replace(/[^0-9.]/g, '') : '';
+    }}/>
             </Form.Item>
 
             <Form.Item name='person' rules={[{ required: true, message: 'Please Select Person' }]}

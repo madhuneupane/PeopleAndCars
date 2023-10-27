@@ -22,6 +22,7 @@ const CarCard = ({ id, make, model, personId, price, year, showPage }) => {
                 <UpdateCar id={id} make={make} model={model} personId={personId} price={price} year={year} onButtonClick={handleButtonClick} />
                 :
                 <Card type="inner"
+                style={{backgroundColor: "rgba(231, 226, 226, 0.412)"}}
 
                     actions={!showPage && [
                         <EditOutlined key="edit" onClick={handleButtonClick} />,

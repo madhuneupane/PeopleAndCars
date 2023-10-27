@@ -11,7 +11,7 @@ const Car = ({ id, showPage }) => {
   if (error) return `Error! ${error.message}`
   return (
     <>
-      <List grid={{ gutter: 20, column: 1 }} >
+      <List style={{marginTop:"10px"}} grid={{ gutter: 20, column: 1 }} >
 
         {data.personWithCars.cars.map(({ id, make, model, personId, price, year }) => (
           <CarCard
