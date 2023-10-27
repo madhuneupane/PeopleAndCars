@@ -17,11 +17,12 @@ const CarCard = ({id,make,model,personId,price,year,showPage})=>{
 
     }
     return(
-        <div>
+        <div >
             {editMode ?
             <UpdateCar id={id} make={make} model={model} personId={personId} price={price} year={year} onButtonClick = {handleButtonClick}/>
             :
         <Card type="inner"
+        
         actions={!showPage&&[
             <EditOutlined key="edit" onClick={handleButtonClick}/>,
             <DeleteCar id={id} personId={personId}/>
@@ -33,5 +34,8 @@ const CarCard = ({id,make,model,personId,price,year,showPage})=>{
     )
 
 }
+
+
+  
 
 export default CarCard

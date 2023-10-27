@@ -1,12 +1,11 @@
 import { useMutation } from '@apollo/client';
 import {Form, Input, Typography, Button, Select, InputNumber} from 'antd'
 import { useEffect, useState } from 'react'
-import { ADD_CAR,GET_PEOPLE, GET_PERSON_WITH_CARS } from '../../graphql/queries';
-import {useQuery} from '@apollo/client'
+import { ADD_CAR, GET_PERSON_WITH_CARS } from '../../graphql/queries';
 import {v4 as uuidv4} from 'uuid'
 
 const {Title} = Typography;
-const AddCar = ()=>{
+const AddCar = ({people})=>{
   const [id] = useState(uuidv4())
     const [form] = Form.useForm()
     const [, forceUpdate] = useState()
@@ -45,6 +44,7 @@ const AddCar = ()=>{
           }
     
         })
+        form.resetFields()
       }
 
     })
@@ -55,14 +55,10 @@ const AddCar = ()=>{
     forceUpdate({})
   }, [])
 
-    const {loading,error,data} = useQuery(GET_PEOPLE)
-    if (loading) return 'Loading...'
-  if (error) return `Error! ${error.message}`
-
-
-   
     return (
     <>
+    {people.length ===0 ? "":
+      <>
     <Title level={3} style={{marginBottom:20}}>Add Car</Title>
     <Form
     name="add-car"
@@ -101,7 +97,7 @@ const AddCar = ()=>{
       >
         <Select style={{ width: 200 }} placeholder='Select a Person'>
 						{
-							data.people.map(({ id, firstName, lastName }) => (
+							people.map(({ id, firstName, lastName }) => (
 								<Option key={id} value={id}>
 									{firstName} {lastName}
 								</Option>
@@ -125,6 +121,8 @@ const AddCar = ()=>{
           </Form.Item>
     </Form>
     </>
+          }
+          </>
     )
 }
 export default AddCar

@@ -16,8 +16,6 @@ const AddPerson = ()=>{
 
 const onFinish = values=>{
 const {firstName, lastName} = values
-
-
 addPerson({
   variables:{
     addPersonId:id,
@@ -37,6 +35,7 @@ addPerson({
       }
 
     })
+    form.resetFields()
   }
 })
 }

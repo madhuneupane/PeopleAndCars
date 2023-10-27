@@ -1,6 +1,7 @@
 import { GET_PERSON_WITH_CARS } from "../../graphql/queries";
 import {useQuery} from '@apollo/client'
 import CarCard from "../listItems/CarCard";
+import { List } from 'antd'
 
 const Car = ({id, showPage})=>{
     const {loading,error,data} = useQuery(GET_PERSON_WITH_CARS, {
@@ -10,6 +11,7 @@ const Car = ({id, showPage})=>{
   if (error) return `Error! ${error.message}`
 return(
     <>
+    <List grid={{ gutter: 20, column: 1 }} >
     
         {data.personWithCars.cars.map(({id,make,model,personId,price,year})=>(
           <CarCard 
@@ -26,7 +28,7 @@ return(
         )
 
         )}
-    
+    </List>
     </>
 )
 }

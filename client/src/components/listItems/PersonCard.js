@@ -9,27 +9,27 @@ import {Link} from 'react-router-dom'
 
 const PersonCard = (props)=>{
   const [editMode, setEditMode] = useState(false)
-  const styles = getStyles()
   const {id, firstName, lastName,showPage} =  props;
   console.log(showPage);
+  const styles = getStyles()
 
   const handleButtonClick = ()=>{
     setEditMode(!editMode)
   }
   const actions = showPage ?
-  [<Link to={'/'}>Go Home</Link>]:
+  [<Link to={'/'}>Go Back Home</Link>]:
   [
   <EditOutlined key="edit" onClick={handleButtonClick}/>,
   <DeletePerson id={id}/>
 ]
 
 return(
-  <div>
+  <div style={styles.list} >
     {editMode ?
     <UpdatePerson id={id} firstName={firstName} lastName={lastName} onButtonClick = {handleButtonClick}/>
     :
     <>
-    <Card style={styles.card}
+    <Card 
      actions={actions}
     >
         {firstName} {lastName}
@@ -47,9 +47,13 @@ return(
 )
 
 }
-export default PersonCard
 const getStyles = () => ({
-  card: {
-    width: '500px'
+  list: {
+    width:"1200px",
+    
+   
+    
   }
 })
+export default PersonCard
+

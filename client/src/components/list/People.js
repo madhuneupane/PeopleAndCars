@@ -1,28 +1,39 @@
-import {useQuery} from '@apollo/client'
-import { GET_PEOPLE } from '../../graphql/queries'
-import { List } from 'antd'
+import { List, Typography } from 'antd'
 import PersonCard from '../listItems/PersonCard'
+
 const getStyles = () => ({
     list: {
+      width:"100%",
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+     
+      
     }
   })
 
-  const People = ({showPage})=>{
+  const People = ({people,showPage})=>{
+    const {Title} = Typography;
     const styles = getStyles()
-    const {loading,error,data} = useQuery(GET_PEOPLE)
-    if (loading) return 'Loading...'
-  if (error) return `Error! ${error.message}`
+    
 
 return(
+  <>
+  {people.length === 0 ? "":
+ <>
+ <Title level={3} style={{marginBottom:20}}>Records</Title>
     <List grid={{ gutter: 20, column: 1 }} style={styles.list}>
-    {data.people.map(({ id, firstName, lastName }) => (
-      <List.Item key={id}>
+    {people.map(({ id, firstName, lastName }) => (
+      <List.Item key={id} >
+       
         <PersonCard id={id} firstName={firstName} lastName={lastName} showPage={showPage}/>
       </List.Item>
     ))}
   </List>
+  </>
+  }
+  </>
+  
+
 )
   }
   export default People
