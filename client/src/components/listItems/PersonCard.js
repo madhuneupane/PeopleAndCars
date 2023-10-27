@@ -49,7 +49,7 @@ const PersonCard = (props) => {
 }
 const getStyles = () => ({
   list: {
-    width: "1200px",
+    width: "1000px",
 
 
 

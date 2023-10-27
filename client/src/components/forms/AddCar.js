@@ -66,7 +66,7 @@ const AddCar = ({ people }) => {
             name="add-car"
             layout='inline'
             size='large'
-            style={{ justifyContent: "center", marginBottom: '40px' }}
+            style={{ justifyContent: "center", marginBottom: '40px', flexWrap:"nowrap" }}
             form={form}
             onFinish={onFinish}>
             <Form.Item

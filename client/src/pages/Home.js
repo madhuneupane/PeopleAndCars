@@ -9,7 +9,7 @@ const Home = () => {
     if (error) return `Error! ${error.message}`
     return (
         <div >
-
+            <hr style={{width:"1290px", height:"1px",backgroundColor:"lightgray"}}></hr>
             <AddPerson />
             <AddCar people={data.people} />
             <People people={data.people} showPage={false} />
