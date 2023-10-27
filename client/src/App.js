@@ -7,14 +7,14 @@ import ShowPage from './pages/ShowPage';
 
 
 const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <Home />,
-	},
-	{
-		path: '/person/:personId',
-		element: <ShowPage />,
-	},
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/person/:personId',
+    element: <ShowPage />,
+  },
 ]);
 
 
@@ -24,16 +24,16 @@ const client = new ApolloClient({
 })
 
 function App() {
-  
+
   return (
     <div className='App'>
-    <ApolloProvider client={client}>
-   
-    <Title />
-    <RouterProvider router={router} />
-    
-   
-    </ApolloProvider>
+      <ApolloProvider client={client}>
+
+        <Title />
+        <RouterProvider router={router} />
+
+
+      </ApolloProvider>
     </div>
   );
 }

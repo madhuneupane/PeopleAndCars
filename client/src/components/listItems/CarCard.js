@@ -4,38 +4,38 @@ import DeleteCar from "../buttons/DeleteCar";
 import { useState } from "react";
 import UpdateCar from "../forms/UpdateCar";
 
-const CarCard = ({id,make,model,personId,price,year,showPage})=>{
-     const formattedPrice = price.toLocaleString()
-     const [editMode, setEditMode] = useState(false)
+const CarCard = ({ id, make, model, personId, price, year, showPage }) => {
+    const formattedPrice = price.toLocaleString()
+    const [editMode, setEditMode] = useState(false)
 
-    
+
     const symbol = "->$"
 
-    const handleButtonClick = ()=>{
+    const handleButtonClick = () => {
         setEditMode(!editMode)
 
 
     }
-    return(
+    return (
         <div >
             {editMode ?
-            <UpdateCar id={id} make={make} model={model} personId={personId} price={price} year={year} onButtonClick = {handleButtonClick}/>
-            :
-        <Card type="inner"
-        
-        actions={!showPage&&[
-            <EditOutlined key="edit" onClick={handleButtonClick}/>,
-            <DeleteCar id={id} personId={personId}/>
-           ]}> 
-    {year} {make} {model} {symbol} {formattedPrice}
-        </Card>
-        }
+                <UpdateCar id={id} make={make} model={model} personId={personId} price={price} year={year} onButtonClick={handleButtonClick} />
+                :
+                <Card type="inner"
+
+                    actions={!showPage && [
+                        <EditOutlined key="edit" onClick={handleButtonClick} />,
+                        <DeleteCar id={id} personId={personId} />
+                    ]}>
+                    {year} {make} {model} {symbol} {formattedPrice}
+                </Card>
+            }
         </div>
     )
 
 }
 
 
-  
+
 
 export default CarCard
